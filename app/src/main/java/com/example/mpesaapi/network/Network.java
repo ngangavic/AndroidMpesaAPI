@@ -19,17 +19,19 @@ import okhttp3.Response;
 
 import static com.example.mpesaapi.settings.SandBox.consumer_key;
 import static com.example.mpesaapi.settings.SandBox.consumer_secret;
+import static com.example.mpesaapi.settings.SandBox.getConsumer_key;
+import static com.example.mpesaapi.settings.SandBox.getConsumer_secret;
 
 public class Network {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String sendRequest(String requestJson) throws IOException, JSONException {
+    public static String sendRequest(String requestJson,String url) throws IOException, JSONException {
         OkHttpClient client = new OkHttpClient();
 
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType, requestJson);
         Request request = new Request.Builder()
-                .url("https://sandbox.safaricom.co.ke/safaricom/c2b/v1/simulate")
+                .url(url)
                 .post(body)
                 .addHeader("content-type", "application/json")
                 .addHeader("authorization", "Bearer "+accesToken())
@@ -37,7 +39,7 @@ public class Network {
                 .build();
 
         Response response = client.newCall(request).execute();
-        System.out.println(response.body().string());
+       // System.out.println(response.body().string());
         Log.d("RESPONSE: ",response.body().string());
         return response.body().toString();
     }
@@ -45,7 +47,7 @@ public class Network {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String accesToken() throws IOException, JSONException {
 
-        String appKeySecret = consumer_key + ":" + consumer_secret;
+        String appKeySecret = getConsumer_key() + ":" + getConsumer_secret();
         byte[] bytes = appKeySecret.getBytes("ISO-8859-1");
         String encoded = Base64.getEncoder().encodeToString(bytes);
 

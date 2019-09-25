@@ -11,6 +11,14 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import static com.example.mpesaapi.network.Network.sendRequest;
+import static com.example.mpesaapi.settings.SandBox.getAcc_bal_url;
+import static com.example.mpesaapi.settings.SandBox.getB2b_url;
+import static com.example.mpesaapi.settings.SandBox.getB2c_url;
+import static com.example.mpesaapi.settings.SandBox.getC2b_url;
+import static com.example.mpesaapi.settings.SandBox.getRegister_url;
+import static com.example.mpesaapi.settings.SandBox.getReversal_url;
+import static com.example.mpesaapi.settings.SandBox.getStkpush_url;
+import static com.example.mpesaapi.settings.SandBox.getStkpushquery_url;
 
 /**
  * This class contains all the methods required.
@@ -36,7 +44,7 @@ public class Mpesa {
         jsonArray.put(jsonObject);
 
         String requestJson=jsonArray.toString().replaceAll("[\\[\\]]","");
-        sendRequest(requestJson);
+        sendRequest(requestJson,getB2c_url());
     }
 
     //b2b request
@@ -60,7 +68,7 @@ public class Mpesa {
         jsonArray.put(jsonObject);
 
         String requestJson=jsonArray.toString().replaceAll("[\\[\\]]","");
-        sendRequest(requestJson);
+        sendRequest(requestJson,getB2b_url());
     }
 
     //c2b request
@@ -78,7 +86,7 @@ public class Mpesa {
 
         String requestJson=jsonArray.toString().replaceAll("[\\[\\]]","");
 
-        sendRequest(requestJson);
+        sendRequest(requestJson,getC2b_url());
     }
 
     //stk push(Lipa Na Mpesa Online)
@@ -102,7 +110,7 @@ public class Mpesa {
         jsonArray.put(jsonObject);
 
         String requestJson=jsonArray.toString().replaceAll("[\\[\\]]","");
-        sendRequest(requestJson);
+        sendRequest(requestJson,getStkpush_url());
     }
 
 
@@ -119,7 +127,7 @@ public class Mpesa {
         jsonArray.put(jsonObject);
 
         String requestJson=jsonArray.toString().replaceAll("[\\[\\]]","");
-        sendRequest(requestJson);
+        sendRequest(requestJson,getStkpushquery_url());
 
     }
 
@@ -140,7 +148,7 @@ public class Mpesa {
         jsonArray.put(jsonObject);
 
         String requestJson=jsonArray.toString().replaceAll("[\\[\\]]","");
-        sendRequest(requestJson);
+        sendRequest(requestJson,getAcc_bal_url());
     }
 
     //registerUrl
@@ -156,7 +164,7 @@ public class Mpesa {
         jsonArray.put(jsonObject);
 
         String requestJson=jsonArray.toString().replaceAll("[\\[\\]]","");
-        sendRequest(requestJson);
+        sendRequest(requestJson,getRegister_url());
     }
 
 
@@ -180,7 +188,7 @@ public class Mpesa {
         jsonArray.put(jsonObject);
 
         String requestJson=jsonArray.toString().replaceAll("[\\[\\]]","");
-        sendRequest(requestJson);
+        sendRequest(requestJson,getReversal_url());
     }
 
 

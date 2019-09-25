@@ -15,12 +15,24 @@ public class SandBox {
     public static final String business_shortcode = "174379";
     public static final String transaction_type = "";
 
-    //urls
+    //custom urls
     public static final String queue_timeout_url = "http://smartforex.co.ke/mpesa/timeout.php";
     public static final String result_url = "http://smartforex.co.ke/mpesa/result.php";
     public static final String confirmation_url = "http://smartforex.co.ke/mpesa/confirmation_url.php";
     public static final String callBack_url = "http://smartforex.co.ke/mpesa/callback.php";
     public static final String validation_url = "http://smartforex.co.ke/mpesa/validation.php";
+
+
+    //mpesa url;
+    public static final String b2c_url="https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest";
+    public static final String b2b_url="https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest";
+    public static final String register_url="https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl";
+    public static final String c2b_url="https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate";
+    public static final String acc_bal_url="https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query";
+    public static final String trans_status_url="https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query";
+    public static final String reversal_url="https://sandbox.safaricom.co.ke/mpesa/reversal/v1/request";
+    public static final String stkpush_url="https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
+    public static final String stkpushquery_url="https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query";
 
 
     public static String getPasskey() {
@@ -81,5 +93,41 @@ public class SandBox {
 
     public static String getValidation_url() {
         return validation_url;
+    }
+
+    public static String getB2c_url() {
+        return b2c_url;
+    }
+
+    public static String getB2b_url() {
+        return b2b_url;
+    }
+
+    public static String getRegister_url() {
+        return register_url;
+    }
+
+    public static String getC2b_url() {
+        return c2b_url;
+    }
+
+    public static String getAcc_bal_url() {
+        return acc_bal_url;
+    }
+
+    public static String getTrans_status_url() {
+        return trans_status_url;
+    }
+
+    public static String getReversal_url() {
+        return reversal_url;
+    }
+
+    public static String getStkpush_url() {
+        return stkpush_url;
+    }
+
+    public static String getStkpushquery_url() {
+        return stkpushquery_url;
     }
 }
