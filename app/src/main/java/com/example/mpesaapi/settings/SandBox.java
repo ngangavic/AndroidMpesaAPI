@@ -16,11 +16,11 @@ public class SandBox {
     public static final String transaction_type = "";
 
     //custom urls
-    public static final String queue_timeout_url = "http://smartforex.co.ke/mpesa/timeout.php";
-    public static final String result_url = "http://smartforex.co.ke/mpesa/result.php";
-    public static final String confirmation_url = "http://smartforex.co.ke/mpesa/confirmation_url.php";
-    public static final String callBack_url = "http://smartforex.co.ke/mpesa/callback.php";
-    public static final String validation_url = "http://smartforex.co.ke/mpesa/validation.php";
+    public static final String queue_timeout_url = "http://smartforex.co.ke/test/timeout.php";
+    public static final String result_url = "http://smartforex.co.ke/test/result.php";
+    public static final String confirmation_url = "http://smartforex.co.ke/test/confirmation_url.php";
+    public static final String callBack_url = "http://smartforex.co.ke/test/callback.php";
+    public static final String validation_url = "http://smartforex.co.ke/test/validation.php";
 
 
     //mpesa url;
