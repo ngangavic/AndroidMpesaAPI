@@ -13,10 +13,18 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
+import static com.example.mpesaapi.mpesa.Mpesa.accountBalance;
+import static com.example.mpesaapi.mpesa.Mpesa.businessBusiness;
 import static com.example.mpesaapi.mpesa.Mpesa.businessCustomer;
+import static com.example.mpesaapi.mpesa.Mpesa.customerBusiness;
+import static com.example.mpesaapi.mpesa.Mpesa.lipaNaMpesaOnlineQuery;
 import static com.example.mpesaapi.mpesa.Mpesa.registerURL;
+import static com.example.mpesaapi.mpesa.Mpesa.reversal;
+import static com.example.mpesaapi.mpesa.Mpesa.transactionStatus;
+import static com.example.mpesaapi.settings.SandBox.getBusiness_shortcode;
 import static com.example.mpesaapi.settings.SandBox.getConfirmation_url;
 import static com.example.mpesaapi.settings.SandBox.getInitiator_name;
+import static com.example.mpesaapi.settings.SandBox.getMSISDN;
 import static com.example.mpesaapi.settings.SandBox.getQueue_timeout_url;
 import static com.example.mpesaapi.settings.SandBox.getResult_url;
 import static com.example.mpesaapi.settings.SandBox.getSecurity_credential;
@@ -55,11 +63,82 @@ public class MainActivity extends AppCompatActivity {
         buttonLNMPQuery = findViewById(R.id.btn_lipa_query);
         buttonAccountBal = findViewById(R.id.btn_acc_bal);
 
+        //b2c
         buttonB2C.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    businessCustomer(getInitiator_name(),getSecurity_credential(),"SalaryPayment","10000",getShort_code(),"254700352822","Your salary",getQueue_timeout_url(),getResult_url());
+                    businessCustomer(getInitiator_name(),getSecurity_credential(),"SalaryPayment","10000",getShort_code(),"254708374149","Your salary",getQueue_timeout_url(),getResult_url());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        //b2b
+        buttonB2B.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    businessBusiness(getInitiator_name(),"August loan",getSecurity_credential(),"BusinessPayBill","4","4","10000",getShort_code(),"600000","Loan payment",getQueue_timeout_url(),getResult_url());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        //c2b
+        buttonC2B.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    customerBusiness(getShort_code(),"CustomerPayBillOnline","1000",getMSISDN(),"KAR345A");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        //account balance
+        buttonAccountBal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    accountBalance(getInitiator_name(),"AccountBalance",getSecurity_credential(),getShort_code(),"4","My balance",getQueue_timeout_url(),getResult_url());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        //reversal
+        buttonReversal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    reversal(getInitiator_name(),getSecurity_credential(),"","","","","",getResult_url(),getQueue_timeout_url(),"reverse past transaction");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        //transaction status
+        buttonTransStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    transactionStatus(getInitiator_name(),getSecurity_credential(),"","","","",getResult_url(),getQueue_timeout_url(),"Current transaction status");
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
