@@ -29,7 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + table + "(id integer primary key autoincrement,password text,date varchar(50),checkOutId text)");
+        db.execSQL("CREATE TABLE stkpush (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,password TEXT,dates VARCHAR(50),checkOutId TEXT)");
         Log.d("DATABASE: ","table created");
     }
 
