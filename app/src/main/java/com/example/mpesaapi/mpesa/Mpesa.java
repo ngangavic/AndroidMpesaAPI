@@ -10,7 +10,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-import static com.example.mpesaapi.network.Network.sendRequest;
+import static com.example.mpesaapi.utils.Network.sendRequest;
 import static com.example.mpesaapi.settings.SandBox.getAcc_bal_url;
 import static com.example.mpesaapi.settings.SandBox.getB2b_url;
 import static com.example.mpesaapi.settings.SandBox.getB2c_url;

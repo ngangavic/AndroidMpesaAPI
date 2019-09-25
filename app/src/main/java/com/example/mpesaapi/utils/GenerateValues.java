@@ -1,0 +1,39 @@
+package com.example.mpesaapi.utils;
+
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import com.example.mpesaapi.settings.SandBox;
+
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Base64;
+import java.util.Date;
+import java.util.Locale;
+
+public class GenerateValues {
+
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String generatePassword() throws UnsupportedEncodingException {
+        String payBill = SandBox.getBusiness_shortcode();
+        String secretKey = SandBox.getPasskey();
+        String time = generateDate();
+        String psd = payBill + secretKey + time;
+
+        byte[] bytes = psd.getBytes("ISO-8859-1");
+
+        String password = Base64.getEncoder().encodeToString(bytes);
+        System.out.println("The password is: " + password);
+        return password;
+    }
+
+    public static String generateDate() {
+        String date = new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault()).format(new Date());
+        System.out.println("Date: " + date);
+        return date;
+
+    }
+}

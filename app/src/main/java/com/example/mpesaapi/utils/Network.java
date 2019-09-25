@@ -1,4 +1,4 @@
-package com.example.mpesaapi.network;
+package com.example.mpesaapi.utils;
 
 import android.os.Build;
 import android.util.Log;
@@ -17,8 +17,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static com.example.mpesaapi.settings.SandBox.consumer_key;
-import static com.example.mpesaapi.settings.SandBox.consumer_secret;
 import static com.example.mpesaapi.settings.SandBox.getConsumer_key;
 import static com.example.mpesaapi.settings.SandBox.getConsumer_secret;
 

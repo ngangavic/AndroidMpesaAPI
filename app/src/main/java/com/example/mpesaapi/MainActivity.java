@@ -17,11 +17,13 @@ import static com.example.mpesaapi.mpesa.Mpesa.accountBalance;
 import static com.example.mpesaapi.mpesa.Mpesa.businessBusiness;
 import static com.example.mpesaapi.mpesa.Mpesa.businessCustomer;
 import static com.example.mpesaapi.mpesa.Mpesa.customerBusiness;
+import static com.example.mpesaapi.mpesa.Mpesa.lipaNaMpesaOnline;
 import static com.example.mpesaapi.mpesa.Mpesa.lipaNaMpesaOnlineQuery;
 import static com.example.mpesaapi.mpesa.Mpesa.registerURL;
 import static com.example.mpesaapi.mpesa.Mpesa.reversal;
 import static com.example.mpesaapi.mpesa.Mpesa.transactionStatus;
 import static com.example.mpesaapi.settings.SandBox.getBusiness_shortcode;
+import static com.example.mpesaapi.settings.SandBox.getCallBack_url;
 import static com.example.mpesaapi.settings.SandBox.getConfirmation_url;
 import static com.example.mpesaapi.settings.SandBox.getInitiator_name;
 import static com.example.mpesaapi.settings.SandBox.getMSISDN;
@@ -139,6 +141,34 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     transactionStatus(getInitiator_name(),getSecurity_credential(),"","","","",getResult_url(),getQueue_timeout_url(),"Current transaction status");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        //lina na mpesa online
+        buttonLNMP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    lipaNaMpesaOnline(getBusiness_shortcode(),"","","","",getMSISDN(),"","",getCallBack_url(),getQueue_timeout_url(),"","");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        //lipa na mpesa online query
+        buttonLNMPQuery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    lipaNaMpesaOnlineQuery(getBusiness_shortcode(),"","","");
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
