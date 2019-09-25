@@ -1,6 +1,7 @@
 package com.example.mpesaapi.utils;
 
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
@@ -26,14 +27,13 @@ public class GenerateValues {
         byte[] bytes = psd.getBytes("ISO-8859-1");
 
         String password = Base64.getEncoder().encodeToString(bytes);
-        System.out.println("The password is: " + password);
+        Log.d("PASSWORD: ",password);
         return password;
     }
 
     public static String generateDate() {
         String date = new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault()).format(new Date());
-        System.out.println("Date: " + date);
+        Log.d("DATE: ",date);
         return date;
-
     }
 }
