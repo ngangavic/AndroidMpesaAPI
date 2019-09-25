@@ -9,6 +9,9 @@ import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.mpesaapi.database.DatabaseHelper;
+import com.example.mpesaapi.utils.Network;
+
 import org.json.JSONException;
 
 import java.io.IOException;
@@ -32,11 +35,13 @@ import static com.example.mpesaapi.settings.SandBox.getResult_url;
 import static com.example.mpesaapi.settings.SandBox.getSecurity_credential;
 import static com.example.mpesaapi.settings.SandBox.getShort_code;
 import static com.example.mpesaapi.settings.SandBox.getValidation_url;
+import static com.example.mpesaapi.utils.GenerateValues.date;
 import static com.example.mpesaapi.utils.GenerateValues.generateDate;
 import static com.example.mpesaapi.utils.GenerateValues.generatePassword;
 
 public class MainActivity extends AppCompatActivity {
     Button buttonB2C,buttonB2B, buttonC2B,buttonTransStatus,buttonReversal,buttonLNMP,buttonLNMPQuery,buttonAccountBal;
+    DatabaseHelper databaseHelper;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -66,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         buttonLNMP = findViewById(R.id.btn_lipa);
         buttonLNMPQuery = findViewById(R.id.btn_lipa_query);
         buttonAccountBal = findViewById(R.id.btn_acc_bal);
-
+        databaseHelper = new DatabaseHelper(this);
         //b2c
         buttonB2C.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,7 +161,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    lipaNaMpesaOnline(getBusiness_shortcode(),generatePassword(),generateDate(),"CustomerPayBillOnline","100",getMSISDN(),getMSISDN(),getBusiness_shortcode(),getCallBack_url(),getQueue_timeout_url(),"KAR423A","Car hire payment");
+                    Network.request="stk";
+                    lipaNaMpesaOnline(getBusiness_shortcode(),generatePassword(),date,"CustomerPayBillOnline","100",getMSISDN(),getMSISDN(),getBusiness_shortcode(),getCallBack_url(),getQueue_timeout_url(),"KAR423A","Car hire payment");
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {

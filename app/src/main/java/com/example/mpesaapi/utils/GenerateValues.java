@@ -14,8 +14,8 @@ import java.util.Date;
 import java.util.Locale;
 
 public class GenerateValues {
-
-
+    public static String password;
+    public static String date;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String generatePassword() throws UnsupportedEncodingException {
@@ -26,13 +26,13 @@ public class GenerateValues {
 
         byte[] bytes = psd.getBytes("ISO-8859-1");
 
-        String password = Base64.getEncoder().encodeToString(bytes);
+        password = Base64.getEncoder().encodeToString(bytes);
         Log.d("PASSWORD: ",password);
         return password;
     }
 
     public static String generateDate() {
-        String date = new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault()).format(new Date());
+        date = new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault()).format(new Date());
         Log.d("DATE: ",date);
         return date;
     }
