@@ -19,7 +19,7 @@ public class Mpesa {
 
     //b2c request
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void businessCustomer(String initiatorName, String securityCredential, String commandID, String  amount, String partyA, String partyB, String remarks, String queueTimeOutURL, String resultURL, String occassion) throws IOException, JSONException {
+    public static void businessCustomer(String initiatorName, String securityCredential, String commandID, String  amount, String partyA, String partyB, String remarks, String queueTimeOutURL, String resultURL, String occassion) throws IOException, JSONException {
         JSONArray jsonArray=new JSONArray();
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("InitiatorName", initiatorName);
@@ -41,7 +41,7 @@ public class Mpesa {
 
     //b2b request
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void businessBusiness(String initiatorName, String accountReference, String securityCredential, String commandID, String senderIdentifierType, String receiverIdentifierType, float  amount, String partyA, String partyB, String remarks, String queueTimeOutURL, String resultURL, String occassion) throws IOException, JSONException {
+    public static void businessBusiness(String initiatorName, String accountReference, String securityCredential, String commandID, String senderIdentifierType, String receiverIdentifierType, float  amount, String partyA, String partyB, String remarks, String queueTimeOutURL, String resultURL, String occassion) throws IOException, JSONException {
         JSONArray jsonArray=new JSONArray();
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("Initiator", initiatorName);
@@ -65,7 +65,7 @@ public class Mpesa {
 
     //c2b request
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void customerBusiness(String shortCode, String commandID, String amount, String MSISDN, String billRefNumber) throws IOException, JSONException {
+    public static void customerBusiness(String shortCode, String commandID, String amount, String MSISDN, String billRefNumber) throws IOException, JSONException {
         JSONArray jsonArray=new JSONArray();
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("ShortCode", shortCode);
@@ -83,7 +83,7 @@ public class Mpesa {
 
     //stk push(Lipa Na Mpesa Online)
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void lipaNaMpesaOnline(String businessShortCode, String password, String timestamp, String transactionType, String amount, String phoneNumber, String partyA, String partyB, String callBackURL, String queueTimeOutURL, String accountReference, String transactionDesc) throws IOException, JSONException {
+    public static void lipaNaMpesaOnline(String businessShortCode, String password, String timestamp, String transactionType, String amount, String phoneNumber, String partyA, String partyB, String callBackURL, String queueTimeOutURL, String accountReference, String transactionDesc) throws IOException, JSONException {
         JSONArray jsonArray=new JSONArray();
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("BusinessShortCode", businessShortCode);
@@ -108,7 +108,7 @@ public class Mpesa {
 
     //stk push query(Lipa Na Mpesa Online Query)
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void lipaNaMpesaOnlineQuery(String businessShortCode, String password, String timestamp, String checkoutRequestID) throws IOException, JSONException {
+    public static void lipaNaMpesaOnlineQuery(String businessShortCode, String password, String timestamp, String checkoutRequestID) throws IOException, JSONException {
         JSONArray jsonArray=new JSONArray();
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("BusinessShortCode", businessShortCode);
@@ -125,7 +125,7 @@ public class Mpesa {
 
     //account balance
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void accountBalance(String initiator, String commandID, String securityCredential, String partyA, String identifierType, String remarks, String queueTimeOutURL, String resultURL) throws IOException, JSONException {
+    public static void accountBalance(String initiator, String commandID, String securityCredential, String partyA, String identifierType, String remarks, String queueTimeOutURL, String resultURL) throws IOException, JSONException {
         JSONArray jsonArray=new JSONArray();
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("Initiator", initiator);
@@ -145,7 +145,7 @@ public class Mpesa {
 
     //registerUrl
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public  void registerURL(String shortCode, String responseType, String confirmationURL, String validationURL) throws IOException, JSONException {
+    public static void registerURL(String shortCode, String responseType, String confirmationURL, String validationURL) throws IOException, JSONException {
         JSONArray jsonArray=new JSONArray();
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("ShortCode", shortCode);
@@ -162,7 +162,7 @@ public class Mpesa {
 
     //reversal
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void reversal(String initiator, String securityCredential, String commandID, String transactionID, String amount, String receiverParty, String recieverIdentifierType, String resultURL, String queueTimeOutURL, String remarks, String ocassion) throws IOException, JSONException {
+    public static void reversal(String initiator, String securityCredential, String commandID, String transactionID, String amount, String receiverParty, String recieverIdentifierType, String resultURL, String queueTimeOutURL, String remarks, String ocassion) throws IOException, JSONException {
         JSONArray jsonArray=new JSONArray();
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("Initiator", initiator);
