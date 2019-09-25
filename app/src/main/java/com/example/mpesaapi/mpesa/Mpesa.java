@@ -12,8 +12,10 @@ import java.io.IOException;
 
 import static com.example.mpesaapi.network.Network.sendRequest;
 
+/**
+ * This class contains all the methods required.
+ **/
 public class Mpesa {
-
 
     //b2c request
     @RequiresApi(api = Build.VERSION_CODES.O)
