@@ -19,7 +19,7 @@ public class Mpesa {
 
     //b2c request
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static void businessCustomer(String initiatorName, String securityCredential, String commandID, String  amount, String partyA, String partyB, String remarks, String queueTimeOutURL, String resultURL, String occassion) throws IOException, JSONException {
+    public static void businessCustomer(String initiatorName, String securityCredential, String commandID, String  amount, String partyA, String partyB, String remarks, String queueTimeOutURL, String resultURL) throws IOException, JSONException {
         JSONArray jsonArray=new JSONArray();
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("InitiatorName", initiatorName);
@@ -31,7 +31,7 @@ public class Mpesa {
         jsonObject.put("Remarks", remarks);
         jsonObject.put("QueueTimeOutURL", queueTimeOutURL);
         jsonObject.put("ResultURL", resultURL);
-        jsonObject.put("Occassion", occassion);
+        //jsonObject.put("Occassion", occassion);
 
         jsonArray.put(jsonObject);
 
