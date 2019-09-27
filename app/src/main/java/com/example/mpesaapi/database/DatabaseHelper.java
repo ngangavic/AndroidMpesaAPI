@@ -12,7 +12,7 @@ import java.sql.PreparedStatement;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String database = "api.sqlite";
+    public static final String database = "mpesa.db";
 
     //stk push table
     public static final String table = "stkpush";
@@ -29,13 +29,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE stkpush (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,password TEXT,dates VARCHAR(50),checkOutId TEXT)");
+        //db.execSQL("CREATE TABLE stkpush (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,password TEXT,dates VARCHAR(50),checkOutId TEXT)");
+        db.execSQL("CREATE TABLE login(name varchar(50),password varchar(50))");
         Log.d("DATABASE: ","table created");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + table);
+        db.execSQL("DROP TABLE IF EXISTS login");
+        onCreate(db);
     }
 
     public void insertSTKPush(String password,String date,String checkOutId){
