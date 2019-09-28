@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String table = "stkpush";
     public static final String id = "id";
     public static final String password = "password";
-    public static final String date = "date";
+    public static final String date = "dates";
     public static final String checkOutId = "checkOutId";
 
 
@@ -29,8 +29,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //db.execSQL("CREATE TABLE stkpush (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,password TEXT,dates VARCHAR(50),checkOutId TEXT)");
-        db.execSQL("CREATE TABLE login(name varchar(50),password varchar(50))");
+        db.execSQL("CREATE TABLE stkpush (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,password TEXT,dates VARCHAR(50),checkOutId TEXT)");
+        //db.execSQL("CREATE TABLE login(name varchar(50),password varchar(50))");
         Log.d("DATABASE: ","table created");
     }
 
@@ -42,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void insertSTKPush(String password,String date,String checkOutId){
         SQLiteDatabase database = getWritableDatabase();
-        String sql ="INSERT INTO " + table + "(password,date,checkOutId)VALUES(?,?,?)";
+        String sql ="INSERT INTO " + table + "(password,dates,checkOutId)VALUES(?,?,?)";
         SQLiteStatement statement = database.compileStatement(sql);
         statement.clearBindings();
         statement.bindString(1,password);

@@ -5,6 +5,8 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.mpesaapi.MainActivity;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,13 +19,17 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.example.mpesaapi.MainActivity.checkoutRequestID;
+import static com.example.mpesaapi.MainActivity.databaseHelper;
 import static com.example.mpesaapi.settings.SandBox.getConsumer_key;
 import static com.example.mpesaapi.settings.SandBox.getConsumer_secret;
+import static com.example.mpesaapi.utils.GenerateValues.date;
+import static com.example.mpesaapi.utils.GenerateValues.password;
 
 public class Network {
 
-    public static String checkoutRequestID;
-    public static String request="";
+
+    public static String requests="url";
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String sendRequest(String requestJson, String url) throws IOException, JSONException {
@@ -42,11 +48,14 @@ public class Network {
         Response response = client.newCall(request).execute();
         // System.out.println(response.body().string());
         Log.d("RESPONSE: ", response.body().string());
-        if (request.equals("stk")) {
-            JSONObject jsonObject = new JSONObject(response.body().string());
+        String jsonData = response.body().string();
+        if (requests.equals("stk")) {
+            JSONObject jsonObject = new JSONObject(jsonData);
+            Log.d("RESPONSE: ", jsonData);
             checkoutRequestID = jsonObject.getString("CheckoutRequestID");
-//            MainActivity mainActivity = new MainActivity();
-//            mainActivity.databaseHelper.insertSTKPush(password, date, checkoutRequestID);
+            //MainActivity mainActivity = new MainActivity();
+            databaseHelper.insertSTKPush(password, date, checkoutRequestID);
+            Log.d("SQLITE: ","Password: "+password +"\n"+ "Date: "+date +"\n"+ "Checkout: "+checkoutRequestID);
         }
         return response.body().toString();
     }
