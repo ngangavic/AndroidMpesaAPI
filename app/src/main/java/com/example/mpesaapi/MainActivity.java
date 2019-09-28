@@ -1,5 +1,6 @@
 package com.example.mpesaapi;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import static com.example.mpesaapi.mpesa.Mpesa.businessBusiness;
 import static com.example.mpesaapi.mpesa.Mpesa.businessCustomer;
 import static com.example.mpesaapi.mpesa.Mpesa.customerBusiness;
 import static com.example.mpesaapi.mpesa.Mpesa.lipaNaMpesaOnline;
+import static com.example.mpesaapi.mpesa.Mpesa.lipaNaMpesaOnlineQuery;
 import static com.example.mpesaapi.mpesa.Mpesa.registerURL;
 import static com.example.mpesaapi.mpesa.Mpesa.reversal;
 import static com.example.mpesaapi.mpesa.Mpesa.transactionStatus;
@@ -177,8 +179,16 @@ public class MainActivity extends AppCompatActivity {
         buttonLNMPQuery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // lipaNaMpesaOnlineQuery(getBusiness_shortcode(),"","","");
-                databaseHelper.insertSTKPush(password, date, checkoutRequestID);
+                Intent intent = new Intent(MainActivity.this,STKQueryActivity.class);
+                startActivity(intent);
+//                try {
+//                    lipaNaMpesaOnlineQuery(getBusiness_shortcode(),"","","");
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+                // databaseHelper.insertSTKPush(password, date, checkoutRequestID);
             }
         });
 

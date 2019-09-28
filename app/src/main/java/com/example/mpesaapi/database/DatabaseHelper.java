@@ -1,6 +1,7 @@
 package com.example.mpesaapi.database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
@@ -51,6 +52,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         statement.executeInsert();
         statement.close();
         database.close();
+    }
+
+    public Cursor getData(String sql){
+        SQLiteDatabase database = getWritableDatabase();
+        return database.rawQuery(sql,null);
     }
 
 

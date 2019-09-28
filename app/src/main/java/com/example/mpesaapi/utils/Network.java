@@ -48,8 +48,9 @@ public class Network {
         Response response = client.newCall(request).execute();
         // System.out.println(response.body().string());
         Log.d("RESPONSE: ", response.body().string());
-        String jsonData = response.body().string();
+
         if (requests.equals("stk")) {
+            String jsonData = response.body().string();
             JSONObject jsonObject = new JSONObject(jsonData);
             Log.d("RESPONSE: ", jsonData);
             checkoutRequestID = jsonObject.getString("CheckoutRequestID");
