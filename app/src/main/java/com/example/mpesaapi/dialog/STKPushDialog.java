@@ -100,7 +100,7 @@ private Dialog dialog;
         dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
-        //dialog.setContentView(R.layout.custom_progress);
+        dialog.setContentView(R.layout.custom_progress);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         if (show){
             dialog.show();
