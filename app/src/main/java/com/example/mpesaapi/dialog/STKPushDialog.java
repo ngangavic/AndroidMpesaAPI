@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,9 +69,10 @@ private Dialog dialog;
                 }else if (phoneVerify(editTextPhone.getText().toString())){
                     Toast.makeText(getActivity(),"Correct",Toast.LENGTH_LONG).show();
                     try {
+
                     Network.requests="stk";
-                    lipaNaMpesaOnline(getBusiness_shortcode(),generatePassword(),date,"CustomerPayBillOnline","100",editTextPhone.getText().toString(),editTextPhone.getText().toString(),getBusiness_shortcode(),getCallBack_url(),getQueue_timeout_url(),"KAR423A","Car hire payment");
-                } catch (IOException e) {
+                    lipaNaMpesaOnline(getBusiness_shortcode(),generatePassword(),date,"CustomerPayBillOnline","100",editPhone(editTextPhone.getText().toString()),editPhone(editTextPhone.getText().toString()),getBusiness_shortcode(),getCallBack_url(),getQueue_timeout_url(),"KAR423A","Car hire payment");
+                    } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
                     e.printStackTrace();
