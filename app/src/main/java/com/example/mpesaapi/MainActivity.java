@@ -12,6 +12,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mpesaapi.database.DatabaseHelper;
+import com.example.mpesaapi.dialog.STKPushDialog;
 import com.example.mpesaapi.utils.Network;
 
 import org.json.JSONException;
@@ -60,13 +61,7 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
-        try {
-            registerURL(getShort_code(),"Confirmed",getConfirmation_url(),getValidation_url());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
         buttonB2C = findViewById(R.id.btn_b2c);
         buttonB2B = findViewById(R.id.btn_b2b);
         buttonC2B = findViewById(R.id.btn_c2b);
@@ -75,6 +70,14 @@ public class MainActivity extends AppCompatActivity {
         buttonLNMP = findViewById(R.id.btn_lipa);
         buttonLNMPQuery = findViewById(R.id.btn_lipa_query);
         buttonAccountBal = findViewById(R.id.btn_acc_bal);
+
+        try {
+            registerURL(getShort_code(),"Confirmed",getConfirmation_url(),getValidation_url());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         //b2c
         buttonB2C.setOnClickListener(new View.OnClickListener() {
@@ -164,14 +167,19 @@ public class MainActivity extends AppCompatActivity {
         buttonLNMP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    Network.requests="stk";
-                    lipaNaMpesaOnline(getBusiness_shortcode(),generatePassword(),date,"CustomerPayBillOnline","100",getMSISDN(),getMSISDN(),getBusiness_shortcode(),getCallBack_url(),getQueue_timeout_url(),"KAR423A","Car hire payment");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                STKPushDialog dialog = new STKPushDialog();
+               // Bundle args = new Bundle();
+               // args.putString(getString(R.string.field_chatroom_id), chatroomId);
+                //dialog.setArguments(args);
+                dialog.show(getSupportFragmentManager(), "push dialog");
+//                try {
+//                    Network.requests="stk";
+//                    lipaNaMpesaOnline(getBusiness_shortcode(),generatePassword(),date,"CustomerPayBillOnline","100",getMSISDN(),getMSISDN(),getBusiness_shortcode(),getCallBack_url(),getQueue_timeout_url(),"KAR423A","Car hire payment");
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
             }
         });
 
