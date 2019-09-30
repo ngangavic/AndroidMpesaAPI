@@ -12,7 +12,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mpesaapi.database.DatabaseHelper;
-import com.example.mpesaapi.dialog.STKPushDialog;
 import com.example.mpesaapi.utils.Network;
 
 import org.json.JSONException;
@@ -24,7 +23,6 @@ import static com.example.mpesaapi.mpesa.Mpesa.businessBusiness;
 import static com.example.mpesaapi.mpesa.Mpesa.businessCustomer;
 import static com.example.mpesaapi.mpesa.Mpesa.customerBusiness;
 import static com.example.mpesaapi.mpesa.Mpesa.lipaNaMpesaOnline;
-import static com.example.mpesaapi.mpesa.Mpesa.lipaNaMpesaOnlineQuery;
 import static com.example.mpesaapi.mpesa.Mpesa.registerURL;
 import static com.example.mpesaapi.mpesa.Mpesa.reversal;
 import static com.example.mpesaapi.mpesa.Mpesa.transactionStatus;
@@ -40,7 +38,6 @@ import static com.example.mpesaapi.settings.SandBox.getShort_code;
 import static com.example.mpesaapi.settings.SandBox.getValidation_url;
 import static com.example.mpesaapi.utils.GenerateValues.date;
 import static com.example.mpesaapi.utils.GenerateValues.generatePassword;
-import static com.example.mpesaapi.utils.GenerateValues.password;
 
 public class MainActivity extends AppCompatActivity {
     Button buttonB2C,buttonB2B, buttonC2B,buttonTransStatus,buttonReversal,buttonLNMP,buttonLNMPQuery,buttonAccountBal;
@@ -167,19 +164,14 @@ public class MainActivity extends AppCompatActivity {
         buttonLNMP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                STKPushDialog dialog = new STKPushDialog();
-               // Bundle args = new Bundle();
-               // args.putString(getString(R.string.field_chatroom_id), chatroomId);
-                //dialog.setArguments(args);
-                dialog.show(getSupportFragmentManager(), "push dialog");
-//                try {
-//                    Network.requests="stk";
-//                    lipaNaMpesaOnline(getBusiness_shortcode(),generatePassword(),date,"CustomerPayBillOnline","100",getMSISDN(),getMSISDN(),getBusiness_shortcode(),getCallBack_url(),getQueue_timeout_url(),"KAR423A","Car hire payment");
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
+                try {
+                    Network.requests="stk";
+                    lipaNaMpesaOnline(getBusiness_shortcode(),generatePassword(),date,"CustomerPayBillOnline","100",getMSISDN(),getMSISDN(),getBusiness_shortcode(),getCallBack_url(),getQueue_timeout_url(),"KAR423A","Car hire payment");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -202,4 +194,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 }
