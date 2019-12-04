@@ -54,3 +54,8 @@ Project setup
      }else{
          Toast.makeText(MainActivity.this,"Error",Toast.LENGTH_LONG).show();
      }
+
+
+
+
+Sample Activity file [MainActivity.java](https://gist.github.com/ngangavic/d0a70ca89f320ee77f98d68e8a332c1c).
