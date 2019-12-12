@@ -49,7 +49,7 @@ Project setup
         
 6. call the verification method
     ```java
-     if (verification().equals("0")){
+     if (stkPush().equals("0")){
          Toast.makeText(MainActivity.this,"Success",Toast.LENGTH_LONG).show();
      }else{
          Toast.makeText(MainActivity.this,"Error",Toast.LENGTH_LONG).show();
