@@ -48,5 +48,21 @@ public class Mpesa {
         return sendRequest(requestJson, getStk_push_url());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String c2bSimulation()throws JSONException,IOException{
+        JSONArray jsonArray=new JSONArray();
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("ShortCode", "602994");
+        jsonObject.put("CommandID", "CustomerPayBillOnline");
+        jsonObject.put("Amount", "10");
+        jsonObject.put("Msisdn", "254708374149");
+        jsonObject.put("BillRefNumber", "vic2020");
+
+        jsonArray.put(jsonObject);
+
+        String requestJson=jsonArray.toString().replaceAll("[\\[\\]]","");
+        return sendRequest(requestJson, "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate");
+    }
+
 
 }

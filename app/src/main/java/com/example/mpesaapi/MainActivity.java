@@ -44,6 +44,7 @@ import static com.example.mpesaapi.settings.SandBox.getResult_url;
 import static com.example.mpesaapi.settings.SandBox.getSecurity_credential;
 import static com.example.mpesaapi.settings.SandBox.getShort_code;
 import static com.example.mpesaapi.settings.SandBox.getValidation_url;
+import static com.ngangavictor.mpesa.stkpush.Mpesa.c2bSimulation;
 import static com.ngangavictor.mpesa.stkpush.Mpesa.sktPush;
 
 public class MainActivity extends AppCompatActivity {
@@ -133,7 +134,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    customerBusiness(getShort_code(),"CustomerPayBillOnline","1000",getMSISDN(),"KAR345A");
+                    c2bSimulation();
+                    //customerBusiness(getShort_code(),"CustomerPayBillOnline","1000",getMSISDN(),"KAR345A");
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
