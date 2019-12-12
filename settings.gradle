@@ -1,2 +1,2 @@
-include ':app', ':stkpush'
+include ':app', ':mpesa-api'
 rootProject.name='MpesaAPI'
