@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,26 +22,20 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mpesaapi.database.DatabaseHelper;
-import com.example.mpesaapi.utils.Network;
 import com.ngangavictor.mpesa.stkpush.Settings;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 import static com.example.mpesaapi.mpesa.Mpesa.accountBalance;
 import static com.example.mpesaapi.mpesa.Mpesa.businessBusiness;
 import static com.example.mpesaapi.mpesa.Mpesa.businessCustomer;
 import static com.example.mpesaapi.mpesa.Mpesa.customerBusiness;
-import static com.example.mpesaapi.mpesa.Mpesa.lipaNaMpesaOnline;
 import static com.example.mpesaapi.mpesa.Mpesa.registerURL;
 import static com.example.mpesaapi.mpesa.Mpesa.reversal;
 import static com.example.mpesaapi.mpesa.Mpesa.transactionStatus;
-import static com.example.mpesaapi.settings.SandBox.getBusiness_shortcode;
-import static com.example.mpesaapi.settings.SandBox.getCallBack_url;
 import static com.example.mpesaapi.settings.SandBox.getConfirmation_url;
 import static com.example.mpesaapi.settings.SandBox.getInitiator_name;
 import static com.example.mpesaapi.settings.SandBox.getMSISDN;
@@ -52,10 +44,7 @@ import static com.example.mpesaapi.settings.SandBox.getResult_url;
 import static com.example.mpesaapi.settings.SandBox.getSecurity_credential;
 import static com.example.mpesaapi.settings.SandBox.getShort_code;
 import static com.example.mpesaapi.settings.SandBox.getValidation_url;
-import static com.example.mpesaapi.utils.GenerateValues.date;
-import static com.example.mpesaapi.utils.GenerateValues.generatePassword;
-import static com.ngangavictor.mpesa.stkpush.Mpesa.verification;
-import static com.ngangavictor.mpesa.stkpush.Settings.*;
+import static com.ngangavictor.mpesa.stkpush.Mpesa.sktPush;
 
 public class MainActivity extends AppCompatActivity {
     Button buttonB2C,buttonB2B, buttonC2B,buttonTransStatus,buttonReversal,buttonLNMP,buttonLNMPQuery,buttonAccountBal;
@@ -200,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    if (verification().equals("0")){
+                    if (sktPush().equals("0")){
                         Toast.makeText(MainActivity.this,"Success",Toast.LENGTH_LONG).show();
                     }else{
                         Toast.makeText(MainActivity.this,"Error",Toast.LENGTH_LONG).show();

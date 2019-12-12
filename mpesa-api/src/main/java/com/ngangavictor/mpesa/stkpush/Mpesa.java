@@ -25,28 +25,27 @@ import static com.ngangavictor.mpesa.stkpush.Settings.getTransaction_type;
 
 public class Mpesa {
 
-    //check if all things are set first.
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static String verification() throws JSONException, IOException {
-            JSONArray jsonArray = new JSONArray();
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("BusinessShortCode", getBusiness_short_code());
-            jsonObject.put("Password", getPassword());
-            jsonObject.put("Timestamp", getDate());
-            jsonObject.put("TransactionType", getTransaction_type());
-            jsonObject.put("Amount", getAmount());
-            jsonObject.put("PhoneNumber", getPhone());
-            jsonObject.put("PartyA", getPhone());
-            jsonObject.put("PartyB", getBusiness_short_code());
-            jsonObject.put("CallBackURL", getCallback_url());
-            jsonObject.put("AccountReference", getAccount_reference());
-            jsonObject.put("QueueTimeOutURL", getTimeout_url());
-            jsonObject.put("TransactionDesc", getTransaction_desc());
+    public static String sktPush()throws JSONException,IOException{
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("BusinessShortCode", getBusiness_short_code());
+        jsonObject.put("Password", getPassword());
+        jsonObject.put("Timestamp", getDate());
+        jsonObject.put("TransactionType", getTransaction_type());
+        jsonObject.put("Amount", getAmount());
+        jsonObject.put("PhoneNumber", getPhone());
+        jsonObject.put("PartyA", getPhone());
+        jsonObject.put("PartyB", getBusiness_short_code());
+        jsonObject.put("CallBackURL", getCallback_url());
+        jsonObject.put("AccountReference", getAccount_reference());
+        jsonObject.put("QueueTimeOutURL", getTimeout_url());
+        jsonObject.put("TransactionDesc", getTransaction_desc());
 
-            jsonArray.put(jsonObject);
+        jsonArray.put(jsonObject);
 
-            String requestJson = jsonArray.toString().replaceAll("[\\[\\]]", "");
-            return sendRequest(requestJson, getStk_push_url());
+        String requestJson = jsonArray.toString().replaceAll("[\\[\\]]", "");
+        return sendRequest(requestJson, getStk_push_url());
     }
 
 
