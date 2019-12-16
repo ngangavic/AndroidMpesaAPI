@@ -13,7 +13,7 @@ import static com.ngangavictor.mpesa.api.GenerateValues.*;
 import static com.ngangavictor.mpesa.api.GenerateValues.generatePassword;
 import static com.ngangavictor.mpesa.api.Network.accessToken;
 
-public class Settings {
+public class LNMPSettings {
     public static String business_short_code;
     public static String transaction_type;
     public static String callback_url;
@@ -36,7 +36,7 @@ public class Settings {
     }
 
     public static void setBusiness_short_code(String business_short_code) {
-        Settings.business_short_code = business_short_code;
+        LNMPSettings.business_short_code = business_short_code;
     }
 
     public static String getTransaction_type() {
@@ -44,7 +44,7 @@ public class Settings {
     }
 
     public static void setTransaction_type(String transaction_type) {
-        Settings.transaction_type = transaction_type;
+        LNMPSettings.transaction_type = transaction_type;
     }
 
     public static String getCallback_url() {
@@ -52,7 +52,7 @@ public class Settings {
     }
 
     public static void setCallback_url(String callback_url) {
-        Settings.callback_url = callback_url;
+        LNMPSettings.callback_url = callback_url;
     }
 
     public static String getTimeout_url() {
@@ -60,7 +60,7 @@ public class Settings {
     }
 
     public static void setTimeout_url(String timeout_url) {
-        Settings.timeout_url = timeout_url;
+        LNMPSettings.timeout_url = timeout_url;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -70,7 +70,7 @@ public class Settings {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void setPassword() throws UnsupportedEncodingException {
-        Settings.password = generatePassword();
+        LNMPSettings.password = generatePassword();
     }
 
     public static String getDate() {
@@ -82,7 +82,7 @@ public class Settings {
     }
 
     public static void setAccount_reference(String account_reference) {
-        Settings.account_reference = account_reference;
+        LNMPSettings.account_reference = account_reference;
     }
 
     public static String getTransaction_desc() {
@@ -90,7 +90,7 @@ public class Settings {
     }
 
     public static void setTransaction_desc(String transaction_desc) {
-        Settings.transaction_desc = transaction_desc;
+        LNMPSettings.transaction_desc = transaction_desc;
     }
 
     public static String getStk_push_url() {
@@ -98,7 +98,7 @@ public class Settings {
     }
 
     public static void setStk_push_url(String stk_push_url) {
-        Settings.stk_push_url = stk_push_url;
+        LNMPSettings.stk_push_url = stk_push_url;
     }
 
     public static String getAccess_token_url() {
@@ -106,7 +106,7 @@ public class Settings {
     }
 
     public static void setAccess_token_url(String access_token_url) {
-        Settings.access_token_url = access_token_url;
+        LNMPSettings.access_token_url = access_token_url;
     }
 
     public static String getConsumer_key() {
@@ -114,7 +114,7 @@ public class Settings {
     }
 
     public static void setConsumer_key(String consumer_key) {
-        Settings.consumer_key = consumer_key;
+        LNMPSettings.consumer_key = consumer_key;
     }
 
     public static String getConsumer_secret() {
@@ -122,7 +122,7 @@ public class Settings {
     }
 
     public static void setConsumer_secret(String consumer_secret) {
-        Settings.consumer_secret = consumer_secret;
+        LNMPSettings.consumer_secret = consumer_secret;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -132,7 +132,7 @@ public class Settings {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void setAccess_token() throws IOException, JSONException {
-        Settings.access_token = accessToken();
+        LNMPSettings.access_token = accessToken();
     }
 
     public static String getAmount() {
@@ -140,7 +140,7 @@ public class Settings {
     }
 
     public static void setAmount(String amount) {
-        Settings.amount = amount;
+        LNMPSettings.amount = amount;
     }
 
     public static String getPhone() {
@@ -148,7 +148,7 @@ public class Settings {
     }
 
     public static void setPhone(String phone) {
-        Settings.phone = phone;
+        LNMPSettings.phone = phone;
     }
 
     public static String getPasskey() {
@@ -156,6 +156,6 @@ public class Settings {
     }
 
     public static void setPasskey(String passkey) {
-        Settings.passkey = passkey;
+        LNMPSettings.passkey = passkey;
     }
 }

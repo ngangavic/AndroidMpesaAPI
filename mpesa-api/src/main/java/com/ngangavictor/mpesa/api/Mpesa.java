@@ -10,18 +10,23 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import static com.ngangavictor.mpesa.api.C2BSettings.getBillRef;
+import static com.ngangavictor.mpesa.api.C2BSettings.getC2bUrl;
+import static com.ngangavictor.mpesa.api.C2BSettings.getCommandId;
+import static com.ngangavictor.mpesa.api.C2BSettings.getMSISDN;
+import static com.ngangavictor.mpesa.api.C2BSettings.getShortCode;
 import static com.ngangavictor.mpesa.api.Network.sendRequest;
-import static com.ngangavictor.mpesa.api.Settings.getAccount_reference;
-import static com.ngangavictor.mpesa.api.Settings.getAmount;
-import static com.ngangavictor.mpesa.api.Settings.getBusiness_short_code;
-import static com.ngangavictor.mpesa.api.Settings.getCallback_url;
-import static com.ngangavictor.mpesa.api.Settings.getDate;
-import static com.ngangavictor.mpesa.api.Settings.getPassword;
-import static com.ngangavictor.mpesa.api.Settings.getPhone;
-import static com.ngangavictor.mpesa.api.Settings.getStk_push_url;
-import static com.ngangavictor.mpesa.api.Settings.getTimeout_url;
-import static com.ngangavictor.mpesa.api.Settings.getTransaction_desc;
-import static com.ngangavictor.mpesa.api.Settings.getTransaction_type;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getAccount_reference;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getAmount;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getBusiness_short_code;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getCallback_url;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getDate;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getPassword;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getPhone;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getStk_push_url;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getTimeout_url;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getTransaction_desc;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getTransaction_type;
 
 public class Mpesa {
 
@@ -52,16 +57,16 @@ public class Mpesa {
     public static String c2bSimulation()throws JSONException,IOException{
         JSONArray jsonArray=new JSONArray();
         JSONObject jsonObject=new JSONObject();
-        jsonObject.put("ShortCode", "602994");
-        jsonObject.put("CommandID", "CustomerPayBillOnline");
-        jsonObject.put("Amount", "10");
-        jsonObject.put("Msisdn", "254708374149");
-        jsonObject.put("BillRefNumber", "vic2020");
+        jsonObject.put("ShortCode", getShortCode());
+        jsonObject.put("CommandID", getCommandId());
+        jsonObject.put("Amount", C2BSettings.getAmount());
+        jsonObject.put("Msisdn", getMSISDN());
+        jsonObject.put("BillRefNumber", getBillRef());
 
         jsonArray.put(jsonObject);
 
         String requestJson=jsonArray.toString().replaceAll("[\\[\\]]","");
-        return sendRequest(requestJson, "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate");
+        return sendRequest(requestJson, getC2bUrl());
     }
 
 

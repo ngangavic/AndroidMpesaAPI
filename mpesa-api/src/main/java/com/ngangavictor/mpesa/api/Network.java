@@ -17,10 +17,10 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static com.ngangavictor.mpesa.api.Settings.getAccess_token;
-import static com.ngangavictor.mpesa.api.Settings.getAccess_token_url;
-import static com.ngangavictor.mpesa.api.Settings.getConsumer_key;
-import static com.ngangavictor.mpesa.api.Settings.getConsumer_secret;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getAccess_token;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getAccess_token_url;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getConsumer_key;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getConsumer_secret;
 
 public class Network {
 

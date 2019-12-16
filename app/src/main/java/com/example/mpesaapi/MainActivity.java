@@ -22,7 +22,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mpesaapi.database.DatabaseHelper;
-import com.ngangavictor.mpesa.api.Settings;
+import com.ngangavictor.mpesa.api.C2BSettings;
+import com.ngangavictor.mpesa.api.LNMPSettings;
 
 import org.json.JSONException;
 
@@ -66,20 +67,28 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
-        Settings.setBusiness_short_code("174379");
-        Settings.setCallback_url("http://smartforex.co.ke/android/mpesa/listener.php");
-        Settings.setConsumer_key("AL4cs1jYio03B97Bvri5SWaPsQ1upawY");
-        Settings.setConsumer_secret("tIO5wyY43Gobzt6C");
-        //Settings.setPhone("254708374149");
-        Settings.setPhone("254798467446");
-        Settings.setStk_push_url("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest");
-        Settings.setTimeout_url("http://smartforex.co.ke/android/mpesa/timeout.php");
-        Settings.setTransaction_desc("testing my api");
-        Settings.setTransaction_type("CustomerPayBillOnline");
-        Settings.setAmount("1");
-        Settings.setAccess_token_url("https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials");
-        Settings.setAccount_reference("vic10020");
-        Settings.setPasskey("bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919");
+        LNMPSettings.setBusiness_short_code("174379");
+        LNMPSettings.setCallback_url("http://smartforex.co.ke/android/mpesa/listener.php");
+        LNMPSettings.setConsumer_key("AL4cs1jYio03B97Bvri5SWaPsQ1upawY");
+        LNMPSettings.setConsumer_secret("tIO5wyY43Gobzt6C");
+        //LNMPSettings.setPhone("254708374149");
+        LNMPSettings.setPhone("254798467446");
+        LNMPSettings.setStk_push_url("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest");
+        LNMPSettings.setTimeout_url("http://smartforex.co.ke/android/mpesa/timeout.php");
+        LNMPSettings.setTransaction_desc("testing my api");
+        LNMPSettings.setTransaction_type("CustomerPayBillOnline");
+        LNMPSettings.setAmount("1");
+        LNMPSettings.setAccess_token_url("https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials");
+        LNMPSettings.setAccount_reference("vic10020");
+        LNMPSettings.setPasskey("bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919");
+
+        //c2b settings
+        C2BSettings.setShortCode("602994");
+        C2BSettings.setAmount("1");
+        C2BSettings.setBillRef("vic2020");
+        C2BSettings.setC2bUrl("https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate");
+        C2BSettings.setCommandId("CustomerPayBillOnline");
+        C2BSettings.setMSISDN("254708374149");
 
 
         buttonB2C = findViewById(R.id.btn_b2c);

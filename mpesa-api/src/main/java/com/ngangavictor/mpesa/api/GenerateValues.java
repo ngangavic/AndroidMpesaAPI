@@ -11,9 +11,9 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.Locale;
 
-import static com.ngangavictor.mpesa.api.Settings.getBusiness_short_code;
-import static com.ngangavictor.mpesa.api.Settings.getDate;
-import static com.ngangavictor.mpesa.api.Settings.getPasskey;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getBusiness_short_code;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getDate;
+import static com.ngangavictor.mpesa.api.LNMPSettings.getPasskey;
 
 public class GenerateValues {
 
