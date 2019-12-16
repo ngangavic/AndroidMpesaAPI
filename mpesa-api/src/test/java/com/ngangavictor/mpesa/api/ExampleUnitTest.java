@@ -1,4 +1,4 @@
-package com.ngangavictor.mpesa.stkpush;
+package com.ngangavictor.mpesa.api;
 
 import org.junit.Test;
 

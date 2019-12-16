@@ -1,4 +1,4 @@
-package com.ngangavictor.mpesa.stkpush;
+package com.ngangavictor.mpesa.api;
 
 import android.os.Build;
 
@@ -10,18 +10,18 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-import static com.ngangavictor.mpesa.stkpush.Network.sendRequest;
-import static com.ngangavictor.mpesa.stkpush.Settings.getAccount_reference;
-import static com.ngangavictor.mpesa.stkpush.Settings.getAmount;
-import static com.ngangavictor.mpesa.stkpush.Settings.getBusiness_short_code;
-import static com.ngangavictor.mpesa.stkpush.Settings.getCallback_url;
-import static com.ngangavictor.mpesa.stkpush.Settings.getDate;
-import static com.ngangavictor.mpesa.stkpush.Settings.getPassword;
-import static com.ngangavictor.mpesa.stkpush.Settings.getPhone;
-import static com.ngangavictor.mpesa.stkpush.Settings.getStk_push_url;
-import static com.ngangavictor.mpesa.stkpush.Settings.getTimeout_url;
-import static com.ngangavictor.mpesa.stkpush.Settings.getTransaction_desc;
-import static com.ngangavictor.mpesa.stkpush.Settings.getTransaction_type;
+import static com.ngangavictor.mpesa.api.Network.sendRequest;
+import static com.ngangavictor.mpesa.api.Settings.getAccount_reference;
+import static com.ngangavictor.mpesa.api.Settings.getAmount;
+import static com.ngangavictor.mpesa.api.Settings.getBusiness_short_code;
+import static com.ngangavictor.mpesa.api.Settings.getCallback_url;
+import static com.ngangavictor.mpesa.api.Settings.getDate;
+import static com.ngangavictor.mpesa.api.Settings.getPassword;
+import static com.ngangavictor.mpesa.api.Settings.getPhone;
+import static com.ngangavictor.mpesa.api.Settings.getStk_push_url;
+import static com.ngangavictor.mpesa.api.Settings.getTimeout_url;
+import static com.ngangavictor.mpesa.api.Settings.getTransaction_desc;
+import static com.ngangavictor.mpesa.api.Settings.getTransaction_type;
 
 public class Mpesa {
 

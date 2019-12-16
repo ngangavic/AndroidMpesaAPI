@@ -1,4 +1,4 @@
-package com.ngangavictor.mpesa.stkpush;
+package com.ngangavictor.mpesa.api;
 
 import android.os.Build;
 import android.util.Log;
@@ -17,10 +17,10 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static com.ngangavictor.mpesa.stkpush.Settings.getAccess_token;
-import static com.ngangavictor.mpesa.stkpush.Settings.getAccess_token_url;
-import static com.ngangavictor.mpesa.stkpush.Settings.getConsumer_key;
-import static com.ngangavictor.mpesa.stkpush.Settings.getConsumer_secret;
+import static com.ngangavictor.mpesa.api.Settings.getAccess_token;
+import static com.ngangavictor.mpesa.api.Settings.getAccess_token_url;
+import static com.ngangavictor.mpesa.api.Settings.getConsumer_key;
+import static com.ngangavictor.mpesa.api.Settings.getConsumer_secret;
 
 public class Network {
 

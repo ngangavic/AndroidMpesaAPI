@@ -22,7 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mpesaapi.database.DatabaseHelper;
-import com.ngangavictor.mpesa.stkpush.Settings;
+import com.ngangavictor.mpesa.api.Settings;
 
 import org.json.JSONException;
 
@@ -32,20 +32,18 @@ import java.util.HashMap;
 import static com.example.mpesaapi.mpesa.Mpesa.accountBalance;
 import static com.example.mpesaapi.mpesa.Mpesa.businessBusiness;
 import static com.example.mpesaapi.mpesa.Mpesa.businessCustomer;
-import static com.example.mpesaapi.mpesa.Mpesa.customerBusiness;
 import static com.example.mpesaapi.mpesa.Mpesa.registerURL;
 import static com.example.mpesaapi.mpesa.Mpesa.reversal;
 import static com.example.mpesaapi.mpesa.Mpesa.transactionStatus;
 import static com.example.mpesaapi.settings.SandBox.getConfirmation_url;
 import static com.example.mpesaapi.settings.SandBox.getInitiator_name;
-import static com.example.mpesaapi.settings.SandBox.getMSISDN;
 import static com.example.mpesaapi.settings.SandBox.getQueue_timeout_url;
 import static com.example.mpesaapi.settings.SandBox.getResult_url;
 import static com.example.mpesaapi.settings.SandBox.getSecurity_credential;
 import static com.example.mpesaapi.settings.SandBox.getShort_code;
 import static com.example.mpesaapi.settings.SandBox.getValidation_url;
-import static com.ngangavictor.mpesa.stkpush.Mpesa.c2bSimulation;
-import static com.ngangavictor.mpesa.stkpush.Mpesa.sktPush;
+import static com.ngangavictor.mpesa.api.Mpesa.c2bSimulation;
+import static com.ngangavictor.mpesa.api.Mpesa.sktPush;
 
 public class MainActivity extends AppCompatActivity {
     Button buttonB2C,buttonB2B, buttonC2B,buttonTransStatus,buttonReversal,buttonLNMP,buttonLNMPQuery,buttonAccountBal;

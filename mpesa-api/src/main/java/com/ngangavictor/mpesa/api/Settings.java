@@ -1,4 +1,4 @@
-package com.ngangavictor.mpesa.stkpush;
+package com.ngangavictor.mpesa.api;
 
 import android.os.Build;
 
@@ -9,9 +9,9 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-import static com.ngangavictor.mpesa.stkpush.GenerateValues.*;
-import static com.ngangavictor.mpesa.stkpush.GenerateValues.generatePassword;
-import static com.ngangavictor.mpesa.stkpush.Network.accessToken;
+import static com.ngangavictor.mpesa.api.GenerateValues.*;
+import static com.ngangavictor.mpesa.api.GenerateValues.generatePassword;
+import static com.ngangavictor.mpesa.api.Network.accessToken;
 
 public class Settings {
     public static String business_short_code;

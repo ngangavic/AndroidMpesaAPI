@@ -1,4 +1,4 @@
-package com.ngangavictor.mpesa.stkpush;
+package com.ngangavictor.mpesa.api;
 
 import android.os.Build;
 import android.util.Log;
@@ -11,9 +11,9 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.Locale;
 
-import static com.ngangavictor.mpesa.stkpush.Settings.getBusiness_short_code;
-import static com.ngangavictor.mpesa.stkpush.Settings.getDate;
-import static com.ngangavictor.mpesa.stkpush.Settings.getPasskey;
+import static com.ngangavictor.mpesa.api.Settings.getBusiness_short_code;
+import static com.ngangavictor.mpesa.api.Settings.getDate;
+import static com.ngangavictor.mpesa.api.Settings.getPasskey;
 
 public class GenerateValues {
 
