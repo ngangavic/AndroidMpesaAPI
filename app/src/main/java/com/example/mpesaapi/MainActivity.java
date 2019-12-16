@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mpesaapi.database.DatabaseHelper;
+import com.ngangavictor.mpesa.api.B2BSettings;
 import com.ngangavictor.mpesa.api.C2BSettings;
 import com.ngangavictor.mpesa.api.LNMPSettings;
 
@@ -43,6 +44,7 @@ import static com.example.mpesaapi.settings.SandBox.getResult_url;
 import static com.example.mpesaapi.settings.SandBox.getSecurity_credential;
 import static com.example.mpesaapi.settings.SandBox.getShort_code;
 import static com.example.mpesaapi.settings.SandBox.getValidation_url;
+import static com.ngangavictor.mpesa.api.Mpesa.b2bSimulation;
 import static com.ngangavictor.mpesa.api.Mpesa.c2bSimulation;
 import static com.ngangavictor.mpesa.api.Mpesa.sktPush;
 
@@ -90,6 +92,21 @@ public class MainActivity extends AppCompatActivity {
         C2BSettings.setCommandId("CustomerPayBillOnline");
         C2BSettings.setMSISDN("254708374149");
 
+        //b2b settings
+        B2BSettings.setInitiator("testapi");
+        B2BSettings.setAccountReference("Loan Payment");
+        B2BSettings.setSecurityCredential("");
+        B2BSettings.setCommandID("BusinessPayBill");
+        B2BSettings.setSenderIdentifierType("4");
+        B2BSettings.setReceiverIdentifierType("4");
+        B2BSettings.setAmount("1");
+        B2BSettings.setPartyA("600130");
+        B2BSettings.setPartyB("60000");
+        B2BSettings.setRemarks("Car loan payment for August");
+        B2BSettings.setResultURL("");
+        B2BSettings.setQueueTimeOutURL("");
+        B2BSettings.setB2bUrl("https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest");
+
 
         buttonB2C = findViewById(R.id.btn_b2c);
         buttonB2B = findViewById(R.id.btn_b2b);
@@ -127,7 +144,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    businessBusiness(getInitiator_name(),"August loan",getSecurity_credential(),"BusinessPayBill","4","4","10000",getShort_code(),"600000","Loan payment",getQueue_timeout_url(),getResult_url());
+                    b2bSimulation();
+                    //businessBusiness(getInitiator_name(),"August loan",getSecurity_credential(),"BusinessPayBill","4","4","10000",getShort_code(),"600000","Loan payment",getQueue_timeout_url(),getResult_url());
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {

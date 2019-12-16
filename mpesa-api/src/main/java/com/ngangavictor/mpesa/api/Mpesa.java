@@ -10,6 +10,17 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import static com.ngangavictor.mpesa.api.B2BSettings.getAccountReference;
+import static com.ngangavictor.mpesa.api.B2BSettings.getCommandID;
+import static com.ngangavictor.mpesa.api.B2BSettings.getInitiator;
+import static com.ngangavictor.mpesa.api.B2BSettings.getPartyA;
+import static com.ngangavictor.mpesa.api.B2BSettings.getPartyB;
+import static com.ngangavictor.mpesa.api.B2BSettings.getQueueTimeOutURL;
+import static com.ngangavictor.mpesa.api.B2BSettings.getReceiverIdentifierType;
+import static com.ngangavictor.mpesa.api.B2BSettings.getRemarks;
+import static com.ngangavictor.mpesa.api.B2BSettings.getResultURL;
+import static com.ngangavictor.mpesa.api.B2BSettings.getSecurityCredential;
+import static com.ngangavictor.mpesa.api.B2BSettings.getSenderIdentifierType;
 import static com.ngangavictor.mpesa.api.C2BSettings.getBillRef;
 import static com.ngangavictor.mpesa.api.C2BSettings.getC2bUrl;
 import static com.ngangavictor.mpesa.api.C2BSettings.getCommandId;
@@ -67,6 +78,29 @@ public class Mpesa {
 
         String requestJson=jsonArray.toString().replaceAll("[\\[\\]]","");
         return sendRequest(requestJson, getC2bUrl());
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String b2bSimulation() throws JSONException, IOException {
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("Initiator", getInitiator());
+        jsonObject.put("SecurityCredential", getSecurityCredential());
+        jsonObject.put("CommandID", getCommandID());
+        jsonObject.put("SenderIdentifierType", getSenderIdentifierType());
+        jsonObject.put("ReceiverIdentifierType", getReceiverIdentifierType());
+        jsonObject.put("Amount", B2BSettings.getAmount());
+        jsonObject.put("PartyA", getPartyA());
+        jsonObject.put("PartyB", getPartyB());
+        jsonObject.put("Remarks", getRemarks());
+        jsonObject.put("AccountReference", getAccountReference());
+        jsonObject.put("QueueTimeOutURL", getQueueTimeOutURL());
+        jsonObject.put("ResultURL", getResultURL());
+
+        jsonArray.put(jsonObject);
+
+        String requestJson = jsonArray.toString().replaceAll("[\\[\\]]", "");
+        return sendRequest(requestJson, "");
     }
 
 
