@@ -58,19 +58,19 @@ Project setup
 1. set the environment
 
         ```
-        Settings.setBusiness_short_code("174379"); //business code
-        Settings.setCallback_url("http://www.yourcallbackurl.com"); //callback url
-        Settings.setConsumer_key("AL4cs1jYio03B97Bvri5SWaPsQ1upawY"); //your consumer key
-        Settings.setConsumer_secret("tIO5wyY43Gobzt6C"); // your consumer secret
-        Settings.setPhone("254708374149"); //phone number
-        Settings.setStk_push_url("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest");
-        Settings.setTimeout_url("http://timeout url"); //your timeout url
-        Settings.setTransaction_desc("testing my api"); //transaction description
-        Settings.setTransaction_type("CustomerPayBillOnline"); //let this remain
-        Settings.setAmount("1"); //enter amount
-        Settings.setAccess_token_url("https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials");
-        Settings.setAccount_reference("vic10020"); //account refrence
-        Settings.setPasskey("bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"); //passkey
+        LNMPSettings.setBusiness_short_code("174379");
+        LNMPSettings.setCallback_url("http://smartforex.co.ke/android/mpesa/listener.php");
+        LNMPSettings.setConsumer_key("AL4cs1jYio03B97Bvri5SWaPsQ1upawY");
+        LNMPSettings.setConsumer_secret("tIO5wyY43Gobzt6C");
+        LNMPSettings.setPhone("254708374149");
+        LNMPSettings.setStk_push_url("https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest");
+        LNMPSettings.setTimeout_url("http://smartforex.co.ke/android/mpesa/timeout.php");
+        LNMPSettings.setTransaction_desc("testing my api");
+        LNMPSettings.setTransaction_type("CustomerPayBillOnline");
+        LNMPSettings.setAmount("1");
+        LNMPSettings.setAccess_token_url("https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials");
+        LNMPSettings.setAccount_reference("vic10020");
+        LNMPSettings.setPasskey("bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919");
         
 2. call the verification method
 
