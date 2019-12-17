@@ -15,7 +15,7 @@ Project setup
   2.  add the dependency
          ```gradle
       dependencies {
-	        implementation 'com.github.ngangavic:AndroidMpesaAPI:v1.0'
+	        implementation 'com.github.ngangavic:AndroidMpesaAPI:v1.0.1'
 	     }
   
   3. add the internet permission 
