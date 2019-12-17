@@ -31,8 +31,33 @@ Project setup
             StrictMode.setThreadPolicy(policy);
         }
   
-  5. set the environment
-      ```java
+  5.[Lipa Na Mpesa Online](###-Lipa-Na-mpesa-Online) [C2BSimulation](###-Customer-to-Business)
+
+
+### Customer to Business
+1. Set the environment
+
+       ```
+        C2BSettings.setShortCode("602994");//business shortcode
+        C2BSettings.setAmount("1");//amount
+        C2BSettings.setBillRef("vic2020");//bill reference
+        C2BSettings.setC2bUrl("https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate");//url
+        C2BSettings.setCommandId("CustomerPayBillOnline");//command id
+        C2BSettings.setMSISDN("254708374149");//phone number
+        Settings.setTimeout_url("http://timeout url"); //your timeout url
+	
+	
+        
+
+2.Call c2bSimulation method
+
+     ```
+     c2bSimulation();
+
+### Lipa Na Mpesa Online
+1. set the environment
+
+        ```
         Settings.setBusiness_short_code("174379"); //business code
         Settings.setCallback_url("http://www.yourcallbackurl.com"); //callback url
         Settings.setConsumer_key("AL4cs1jYio03B97Bvri5SWaPsQ1upawY"); //your consumer key
@@ -47,13 +72,15 @@ Project setup
         Settings.setAccount_reference("vic10020"); //account refrence
         Settings.setPasskey("bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"); //passkey
         
-6. call the verification method
-    ```java
+2. call the verification method
+
+     ```java
      if (stkPush().equals("0")){
          Toast.makeText(MainActivity.this,"Success",Toast.LENGTH_LONG).show();
      }else{
          Toast.makeText(MainActivity.this,"Error",Toast.LENGTH_LONG).show();
      }
+    
 
 
 
