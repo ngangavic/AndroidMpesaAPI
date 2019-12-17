@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mpesaapi.database.DatabaseHelper;
+import com.ngangavictor.mpesa.api.AccountBalance;
 import com.ngangavictor.mpesa.api.B2BSettings;
 import com.ngangavictor.mpesa.api.B2CSettings;
 import com.ngangavictor.mpesa.api.C2BSettings;
@@ -121,6 +122,18 @@ public class MainActivity extends AppCompatActivity {
         B2CSettings.setSecurityCredential("EgTdE5XjHYBbNMPGIZKrpQq99hEKTE/P4EfC/SmNIjvfttGV/jf7/JBVto4DfU5CWOhXOPJVGr5W9QIiO8aXLmIbYzbnKX0VvdTvzWcZLLZTXi/qbRCADyHYIKb2yIDu+zIPJ28RFtzYtFLLyySTBXvIrOYLExuLLcsJNuJpGPJ2GZ++dEtuZxQGf+OVfzi5AGAmfzwasIS9G+fhYQE1aAPjVkzBJKelP4jO2rTxQa/AU9oN859gcGqViaW70dEhSIeh73rDCKGz2zirF5hqNc76KcxKpt/rO2Q+pgEJsIAdfjDbCCZ6hTvjhQm5nPQgqI5WViH6jiPRTeC6dt2pgA==");
         B2CSettings.setTimeOutUrl("https://www.timeout.com");
 
+        //account balance settings
+        AccountBalance.setAccountBalanceUrl("https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query");
+        AccountBalance.setAmount("1");
+        AccountBalance.setCommandId("AccountBalance");
+        AccountBalance.setIdentifierType("4");
+        AccountBalance.setInitiatorName("apiop50");
+        AccountBalance.setPartyA("602994");
+        AccountBalance.setRemarks("Check account balance");
+        AccountBalance.setResultUrl("https://wwww.result.com");
+        AccountBalance.setSecurityCredential("EgTdE5XjHYBbNMPGIZKrpQq99hEKTE/P4EfC/SmNIjvfttGV/jf7/JBVto4DfU5CWOhXOPJVGr5W9QIiO8aXLmIbYzbnKX0VvdTvzWcZLLZTXi/qbRCADyHYIKb2yIDu+zIPJ28RFtzYtFLLyySTBXvIrOYLExuLLcsJNuJpGPJ2GZ++dEtuZxQGf+OVfzi5AGAmfzwasIS9G+fhYQE1aAPjVkzBJKelP4jO2rTxQa/AU9oN859gcGqViaW70dEhSIeh73rDCKGz2zirF5hqNc76KcxKpt/rO2Q+pgEJsIAdfjDbCCZ6hTvjhQm5nPQgqI5WViH6jiPRTeC6dt2pgA==");
+        AccountBalance.setTimeOutUrl("https://www.timeout.com");
+
 
         buttonB2C = findViewById(R.id.btn_b2c);
         buttonB2B = findViewById(R.id.btn_b2b);
@@ -189,6 +202,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+
+
                     accountBalance(getInitiator_name(),"AccountBalance",getSecurity_credential(),getShort_code(),"4","My balance",getQueue_timeout_url(),getResult_url());
                 } catch (IOException e) {
                     e.printStackTrace();
