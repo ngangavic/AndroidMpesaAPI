@@ -23,6 +23,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.mpesaapi.database.DatabaseHelper;
 import com.ngangavictor.mpesa.api.B2BSettings;
+import com.ngangavictor.mpesa.api.B2CSettings;
 import com.ngangavictor.mpesa.api.C2BSettings;
 import com.ngangavictor.mpesa.api.LNMPSettings;
 
@@ -45,6 +46,7 @@ import static com.example.mpesaapi.settings.SandBox.getSecurity_credential;
 import static com.example.mpesaapi.settings.SandBox.getShort_code;
 import static com.example.mpesaapi.settings.SandBox.getValidation_url;
 import static com.ngangavictor.mpesa.api.Mpesa.b2bSimulation;
+import static com.ngangavictor.mpesa.api.Mpesa.b2cSimulation;
 import static com.ngangavictor.mpesa.api.Mpesa.c2bSimulation;
 import static com.ngangavictor.mpesa.api.Mpesa.sktPush;
 
@@ -93,19 +95,31 @@ public class MainActivity extends AppCompatActivity {
         C2BSettings.setMSISDN("254708374149");
 
         //b2b settings
-        B2BSettings.setInitiator("testapi");
+        B2BSettings.setInitiator("apiop50");
         B2BSettings.setAccountReference("Loan Payment");
-        B2BSettings.setSecurityCredential("");
+        B2BSettings.setSecurityCredential("EgTdE5XjHYBbNMPGIZKrpQq99hEKTE/P4EfC/SmNIjvfttGV/jf7/JBVto4DfU5CWOhXOPJVGr5W9QIiO8aXLmIbYzbnKX0VvdTvzWcZLLZTXi/qbRCADyHYIKb2yIDu+zIPJ28RFtzYtFLLyySTBXvIrOYLExuLLcsJNuJpGPJ2GZ++dEtuZxQGf+OVfzi5AGAmfzwasIS9G+fhYQE1aAPjVkzBJKelP4jO2rTxQa/AU9oN859gcGqViaW70dEhSIeh73rDCKGz2zirF5hqNc76KcxKpt/rO2Q+pgEJsIAdfjDbCCZ6hTvjhQm5nPQgqI5WViH6jiPRTeC6dt2pgA==");
         B2BSettings.setCommandID("BusinessPayBill");
         B2BSettings.setSenderIdentifierType("4");
-        B2BSettings.setReceiverIdentifierType("4");
+        B2BSettings.setReceiverIdentifierType("3");
         B2BSettings.setAmount("1");
-        B2BSettings.setPartyA("600130");
-        B2BSettings.setPartyB("60000");
+        B2BSettings.setPartyA("602994");
+        B2BSettings.setPartyB("600000");
         B2BSettings.setRemarks("Car loan payment for August");
-        B2BSettings.setResultURL("");
-        B2BSettings.setQueueTimeOutURL("");
+        B2BSettings.setResultURL("https://mytut.com");
+        B2BSettings.setQueueTimeOutURL("https://mytut.com");
         B2BSettings.setB2bUrl("https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest");
+
+        //b2c settings
+        B2CSettings.setAmount("1");
+        B2CSettings.setB2cUrl("https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest");
+        B2CSettings.setCommandId("SalaryPayment");
+        B2CSettings.setInitiatorName("apiop50");
+        B2CSettings.setPartyA("602994");
+        B2CSettings.setPartyB("254708374149");
+        B2CSettings.setRemarks("December 2019 salary");
+        B2CSettings.setResultUrl("https://www.result.com");
+        B2CSettings.setSecurityCredential("EgTdE5XjHYBbNMPGIZKrpQq99hEKTE/P4EfC/SmNIjvfttGV/jf7/JBVto4DfU5CWOhXOPJVGr5W9QIiO8aXLmIbYzbnKX0VvdTvzWcZLLZTXi/qbRCADyHYIKb2yIDu+zIPJ28RFtzYtFLLyySTBXvIrOYLExuLLcsJNuJpGPJ2GZ++dEtuZxQGf+OVfzi5AGAmfzwasIS9G+fhYQE1aAPjVkzBJKelP4jO2rTxQa/AU9oN859gcGqViaW70dEhSIeh73rDCKGz2zirF5hqNc76KcxKpt/rO2Q+pgEJsIAdfjDbCCZ6hTvjhQm5nPQgqI5WViH6jiPRTeC6dt2pgA==");
+        B2CSettings.setTimeOutUrl("https://www.timeout.com");
 
 
         buttonB2C = findViewById(R.id.btn_b2c);
@@ -130,7 +144,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    businessCustomer(getInitiator_name(),getSecurity_credential(),"SalaryPayment","10000",getShort_code(),"254708374149","Your salary",getQueue_timeout_url(),getResult_url());
+                    b2cSimulation();
+                   // businessCustomer(getInitiator_name(),getSecurity_credential(),"SalaryPayment","10000",getShort_code(),"254708374149","Your salary",getQueue_timeout_url(),getResult_url());
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {

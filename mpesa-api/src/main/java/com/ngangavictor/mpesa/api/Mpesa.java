@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import static com.ngangavictor.mpesa.api.B2BSettings.getAccountReference;
+import static com.ngangavictor.mpesa.api.B2BSettings.getB2bUrl;
 import static com.ngangavictor.mpesa.api.B2BSettings.getCommandID;
 import static com.ngangavictor.mpesa.api.B2BSettings.getInitiator;
 import static com.ngangavictor.mpesa.api.B2BSettings.getPartyA;
@@ -21,6 +22,10 @@ import static com.ngangavictor.mpesa.api.B2BSettings.getRemarks;
 import static com.ngangavictor.mpesa.api.B2BSettings.getResultURL;
 import static com.ngangavictor.mpesa.api.B2BSettings.getSecurityCredential;
 import static com.ngangavictor.mpesa.api.B2BSettings.getSenderIdentifierType;
+import static com.ngangavictor.mpesa.api.B2CSettings.amount;
+import static com.ngangavictor.mpesa.api.B2CSettings.getInitiatorName;
+import static com.ngangavictor.mpesa.api.B2CSettings.getResultUrl;
+import static com.ngangavictor.mpesa.api.B2CSettings.getTimeOutUrl;
 import static com.ngangavictor.mpesa.api.C2BSettings.getBillRef;
 import static com.ngangavictor.mpesa.api.C2BSettings.getC2bUrl;
 import static com.ngangavictor.mpesa.api.C2BSettings.getCommandId;
@@ -100,7 +105,28 @@ public class Mpesa {
         jsonArray.put(jsonObject);
 
         String requestJson = jsonArray.toString().replaceAll("[\\[\\]]", "");
-        return sendRequest(requestJson, "");
+        return sendRequest(requestJson, getB2bUrl());
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String b2cSimulation() throws JSONException, IOException {
+        JSONArray jsonArray = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("InitiatorName", getInitiatorName());
+        jsonObject.put("SecurityCredential", getSecurityCredential());
+        jsonObject.put("CommandID", getCommandId());
+        jsonObject.put("Amount", getAmount());
+        jsonObject.put("PartyA", getPartyA());
+        jsonObject.put("PartyB", getPartyB());
+        jsonObject.put("Remarks", getRemarks());
+        jsonObject.put("QueueTimeOutURL", getTimeOutUrl());
+        jsonObject.put("ResultURL", getResultUrl());
+        //jsonObject.put("Occassion", occassion);
+
+        jsonArray.put(jsonObject);
+
+        String requestJson = jsonArray.toString().replaceAll("[\\[\\]]", "");
+        return sendRequest(requestJson, getB2bUrl());
     }
 
 

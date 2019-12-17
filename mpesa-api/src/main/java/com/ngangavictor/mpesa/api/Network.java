@@ -64,16 +64,16 @@ public class Network {
 
         Response response = client.newCall(request).execute();
 
-       // Log.d("RESPONSE: ", response.body().string());
+        Log.d("RESPONSE: ", response.body().string());
 
-       // return response.body().toString();
-        JSONObject res = new JSONObject(response.body().string());
-        if(res.has("ResponseCode")) {
-            Log.d("ResponseCode: ", res.getString("ResponseCode"));
-            return res.getString("ResponseCode");
-        }else{
-            return "1";
-        }
+        return response.body().toString();
+//        JSONObject res = new JSONObject(response.body().string());
+//        if(res.has("ResponseCode")) {
+//            Log.d("ResponseCode: ", res.getString("ResponseCode"));
+//            return res.getString("ResponseCode");
+//        }else{
+//            return "1";
+//        }
 
     }
 
