@@ -26,16 +26,15 @@ import com.ngangavictor.mpesa.api.AccountBalance;
 import com.ngangavictor.mpesa.api.B2BSettings;
 import com.ngangavictor.mpesa.api.B2CSettings;
 import com.ngangavictor.mpesa.api.C2BSettings;
+import com.ngangavictor.mpesa.api.LNMPQuerySettings;
 import com.ngangavictor.mpesa.api.LNMPSettings;
+import com.ngangavictor.mpesa.api.Mpesa;
 
 import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.HashMap;
 
-import static com.example.mpesaapi.mpesa.Mpesa.accountBalance;
-import static com.example.mpesaapi.mpesa.Mpesa.businessBusiness;
-import static com.example.mpesaapi.mpesa.Mpesa.businessCustomer;
 import static com.example.mpesaapi.mpesa.Mpesa.registerURL;
 import static com.example.mpesaapi.mpesa.Mpesa.reversal;
 import static com.example.mpesaapi.mpesa.Mpesa.transactionStatus;
@@ -50,21 +49,16 @@ import static com.ngangavictor.mpesa.api.Mpesa.b2bSimulation;
 import static com.ngangavictor.mpesa.api.Mpesa.b2cSimulation;
 import static com.ngangavictor.mpesa.api.Mpesa.c2bSimulation;
 import static com.ngangavictor.mpesa.api.Mpesa.sktPush;
+import static com.ngangavictor.mpesa.api.Mpesa.stkPushQuery;
 
 public class MainActivity extends AppCompatActivity {
-    Button buttonB2C,buttonB2B, buttonC2B,buttonTransStatus,buttonReversal,buttonLNMP,buttonLNMPQuery,buttonAccountBal;
-    public static SQLiteDatabase database;
-    public static DatabaseHelper databaseHelper;
-    public static String checkoutRequestID;
-    String url ="http://smartforex.co.ke/android/mpesa/listener.php";
-    private UserLoginTask mAuthTask = null;
+    Button buttonB2C, buttonB2B, buttonC2B, buttonTransStatus, buttonReversal, buttonLNMP, buttonLNMPQuery, buttonAccountBal;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        database=new DatabaseHelper(this).getWritableDatabase();
-        databaseHelper = new DatabaseHelper(this);
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
         if (SDK_INT > 8) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
@@ -134,6 +128,13 @@ public class MainActivity extends AppCompatActivity {
         AccountBalance.setSecurityCredential("EgTdE5XjHYBbNMPGIZKrpQq99hEKTE/P4EfC/SmNIjvfttGV/jf7/JBVto4DfU5CWOhXOPJVGr5W9QIiO8aXLmIbYzbnKX0VvdTvzWcZLLZTXi/qbRCADyHYIKb2yIDu+zIPJ28RFtzYtFLLyySTBXvIrOYLExuLLcsJNuJpGPJ2GZ++dEtuZxQGf+OVfzi5AGAmfzwasIS9G+fhYQE1aAPjVkzBJKelP4jO2rTxQa/AU9oN859gcGqViaW70dEhSIeh73rDCKGz2zirF5hqNc76KcxKpt/rO2Q+pgEJsIAdfjDbCCZ6hTvjhQm5nPQgqI5WViH6jiPRTeC6dt2pgA==");
         AccountBalance.setTimeOutUrl("https://www.timeout.com");
 
+        //lipa na mpesa query
+        LNMPQuerySettings.setBusiness_short_code("");
+        LNMPQuerySettings.setCheckout_request_id("");
+        LNMPQuerySettings.setPassword("");
+        LNMPQuerySettings.setStk_push_query_url("");
+        LNMPQuerySettings.setTimestamp("");
+
 
         buttonB2C = findViewById(R.id.btn_b2c);
         buttonB2B = findViewById(R.id.btn_b2b);
@@ -145,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         buttonAccountBal = findViewById(R.id.btn_acc_bal);
 
         try {
-            registerURL(getShort_code(),"Confirmed",getConfirmation_url(),getValidation_url());
+            registerURL(getShort_code(), "Confirmed", getConfirmation_url(), getValidation_url());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
@@ -158,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     b2cSimulation();
-                   // businessCustomer(getInitiator_name(),getSecurity_credential(),"SalaryPayment","10000",getShort_code(),"254708374149","Your salary",getQueue_timeout_url(),getResult_url());
+                    // businessCustomer(getInitiator_name(),getSecurity_credential(),"SalaryPayment","10000",getShort_code(),"254708374149","Your salary",getQueue_timeout_url(),getResult_url());
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
@@ -202,9 +203,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-
-
-                    accountBalance(getInitiator_name(),"AccountBalance",getSecurity_credential(),getShort_code(),"4","My balance",getQueue_timeout_url(),getResult_url());
+                    Mpesa.accountBalance();
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
@@ -218,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    reversal(getInitiator_name(),getSecurity_credential(),"","","","","",getResult_url(),getQueue_timeout_url(),"reverse past transaction");
+                    reversal(getInitiator_name(), getSecurity_credential(), "", "", "", "", "", getResult_url(), getQueue_timeout_url(), "reverse past transaction");
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
@@ -232,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    transactionStatus(getInitiator_name(),getSecurity_credential(),"","","","",getResult_url(),getQueue_timeout_url(),"Current transaction status");
+                    transactionStatus(getInitiator_name(), getSecurity_credential(), "", "", "", "", getResult_url(), getQueue_timeout_url(), "Current transaction status");
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
@@ -246,31 +245,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    if (sktPush().equals("0")){
-                        Toast.makeText(MainActivity.this,"Success",Toast.LENGTH_LONG).show();
-                    }else{
-                        Toast.makeText(MainActivity.this,"Error",Toast.LENGTH_LONG).show();
+                    if (sktPush().equals("0")) {
+                        Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_LONG).show();
                     }
-//                    send();
-//                    HashMap<String,String> params = new HashMap<>();
-//                    params.put("phone", "254798467446");
-//                    params.put("amount","1");
-//
-//                    mAuthTask=new UserLoginTask(url,params,200);
-//                    mAuthTask.execute();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-//                try {
-//                    Network.requests="stk";
-//                    lipaNaMpesaOnline(getBusiness_shortcode(),generatePassword(),date,"CustomerPayBillOnline","100",getMSISDN(),getMSISDN(),getBusiness_shortcode(),getCallBack_url(),getQueue_timeout_url(),"KAR423A","Car hire payment");
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
             }
         });
 
@@ -278,92 +262,17 @@ public class MainActivity extends AppCompatActivity {
         buttonLNMPQuery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,STKQueryActivity.class);
-                startActivity(intent);
-//                try {
-//                    lipaNaMpesaOnlineQuery(getBusiness_shortcode(),"","","");
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-                // databaseHelper.insertSTKPush(password, date, checkoutRequestID);
+                try {
+                    stkPushQuery();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
 
-    }
-
-    private void send(){
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://smartforex.co.ke/android/mpesa/listener.php";
-
-// Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("MPESA RESPONSE",response.toString());
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-               error.printStackTrace();
-            }
-       }){
-//            @Override
-//            protected Map<String, String> getParams() throws AuthFailureError {
-//
-//                Map<String, String>  params = new HashMap<String, String>();
-//                params.put("phone", "254798467446");
-//                params.put("amount", "1");
-//
-//                return params;
-//            }
-        };
-
-// Add the request to the RequestQueue.\
-        //new DefaultRetryPolicy(0, -1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        stringRequest.setRetryPolicy(
-                new DefaultRetryPolicy(
-                        0,
-                        -1,
-                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        queue.add(stringRequest);
-        queue.start();
-    }
-
-    private class UserLoginTask extends AsyncTask<Void, Void, String> {
-        String url;
-        HashMap<String,String> params;
-        int requestCode;
-        UserLoginTask(String url,HashMap<String,String> params,int requestCode){
-            this.url = url;
-            this.params = params;
-            this.requestCode = requestCode;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-        }
-
-        @Override
-        protected void onPostExecute(final String s) {
-            super.onPostExecute(s);
-            Log.d("ASYNC TASK",s);
-        }
-
-        @Override
-        protected String doInBackground(Void... voids) {
-            RequestHandler requestHandler = new RequestHandler();
-            if (requestCode == 200)
-                return requestHandler.sendPostRequest(url,params);
-            return null;
-        }
     }
 
 

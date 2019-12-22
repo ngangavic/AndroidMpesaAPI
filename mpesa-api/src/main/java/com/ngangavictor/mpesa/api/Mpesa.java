@@ -116,5 +116,20 @@ public class Mpesa {
         return sendRequest(requestJson, AccountBalance.getAccountBalanceUrl());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static String stkPushQuery() throws JSONException, IOException {
+        JSONArray jsonArray=new JSONArray();
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("BusinessShortCode", LNMPQuerySettings.getBusiness_short_code());
+        jsonObject.put("Password", LNMPQuerySettings.getPassword());
+        jsonObject.put("Timestamp", LNMPQuerySettings.getTimestamp());
+        jsonObject.put("CheckoutRequestID", LNMPQuerySettings.getCheckout_request_id());
+
+        jsonArray.put(jsonObject);
+
+        String requestJson=jsonArray.toString().replaceAll("[\\[\\]]","");
+        return sendRequest(requestJson, LNMPQuerySettings.getStk_push_query_url());
+    }
+
 
 }
