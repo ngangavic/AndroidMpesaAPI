@@ -31,29 +31,7 @@ Project setup
             StrictMode.setThreadPolicy(policy);
         }
   
-  5.[Lipa Na Mpesa Online](###-Lipa-Na-mpesa-Online) [C2BSimulation](###-Customer-to-Business)
-
-
-### Customer to Business
-1. Set the environment
-
-       ```
-        C2BSettings.setShortCode("602994");//business shortcode
-        C2BSettings.setAmount("1");//amount
-        C2BSettings.setBillRef("vic2020");//bill reference
-        C2BSettings.setC2bUrl("https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate");//url
-        C2BSettings.setCommandId("CustomerPayBillOnline");//command id
-        C2BSettings.setMSISDN("254708374149");//phone number
-        Settings.setTimeout_url("http://timeout url"); //your timeout url
-	
-	
-        
-
-2.Call c2bSimulation method
-
-     ```
-     c2bSimulation();
-
+  
 ### Lipa Na Mpesa Online
 1. set the environment
 
