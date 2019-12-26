@@ -1,12 +1,8 @@
 package com.example.mpesaapi;
 
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -14,14 +10,6 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.mpesaapi.database.DatabaseHelper;
 import com.ngangavictor.mpesa.api.AccountBalance;
 import com.ngangavictor.mpesa.api.B2BSettings;
 import com.ngangavictor.mpesa.api.B2CSettings;
@@ -33,18 +21,7 @@ import com.ngangavictor.mpesa.api.Mpesa;
 import org.json.JSONException;
 
 import java.io.IOException;
-import java.util.HashMap;
 
-import static com.example.mpesaapi.mpesa.Mpesa.registerURL;
-import static com.example.mpesaapi.mpesa.Mpesa.reversal;
-import static com.example.mpesaapi.mpesa.Mpesa.transactionStatus;
-import static com.example.mpesaapi.settings.SandBox.getConfirmation_url;
-import static com.example.mpesaapi.settings.SandBox.getInitiator_name;
-import static com.example.mpesaapi.settings.SandBox.getQueue_timeout_url;
-import static com.example.mpesaapi.settings.SandBox.getResult_url;
-import static com.example.mpesaapi.settings.SandBox.getSecurity_credential;
-import static com.example.mpesaapi.settings.SandBox.getShort_code;
-import static com.example.mpesaapi.settings.SandBox.getValidation_url;
 import static com.ngangavictor.mpesa.api.Mpesa.b2bSimulation;
 import static com.ngangavictor.mpesa.api.Mpesa.b2cSimulation;
 import static com.ngangavictor.mpesa.api.Mpesa.c2bSimulation;
@@ -145,14 +122,6 @@ public class MainActivity extends AppCompatActivity {
         buttonLNMPQuery = findViewById(R.id.btn_lipa_query);
         buttonAccountBal = findViewById(R.id.btn_acc_bal);
 
-        try {
-            registerURL(getShort_code(), "Confirmed", getConfirmation_url(), getValidation_url());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
         //b2c
         buttonB2C.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,13 +185,7 @@ public class MainActivity extends AppCompatActivity {
         buttonReversal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    reversal(getInitiator_name(), getSecurity_credential(), "", "", "", "", "", getResult_url(), getQueue_timeout_url(), "reverse past transaction");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+
             }
         });
 
@@ -230,13 +193,7 @@ public class MainActivity extends AppCompatActivity {
         buttonTransStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    transactionStatus(getInitiator_name(), getSecurity_credential(), "", "", "", "", getResult_url(), getQueue_timeout_url(), "Current transaction status");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+
             }
         });
 
